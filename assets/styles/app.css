@@ -1,3 +1,7 @@
-body {
-    background-color: lightgray;
+.max-h-70vh {
+    max-height: 70vh;
+}
+
+.transform-center {
+    transform: translate(-50%, -50%);
 }
