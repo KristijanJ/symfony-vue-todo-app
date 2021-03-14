@@ -9,9 +9,11 @@
 import './styles/app.css';
 
 import { createApp } from 'vue';
+import App from '../templates/Home/App';
 
 const app = createApp({
-    template: '<h1>Test</h1>'
+    components: { App },
+    template: '<App />'
 });
 
 app.mount('#app');
