@@ -1,3 +1,26 @@
 index:
    path: /
    controller: App\Controller\HomeController::index
+
+get_all_todos:
+   path: /api/get_all_todos
+   controller: App\Controller\HomeController::getAllTodos
+
+get_one_todo:
+   path: /api/get_one_todo/{id}
+   controller: App\Controller\HomeController::getOneTodo
+
+create_todo:
+   path: /api/create-todo
+   controller: App\Controller\HomeController::createTodo
+   methods: [POST]
+
+delete_todo:
+   path: /api/delete-todo/{id}
+   controller: App\Controller\HomeController::deleteTodo
+   methods: [DELETE]
+
+update_todo:
+   path: /api/update-todo/{id}
+   controller: App\Controller\HomeController::updateTodo
+   methods: [PATCH]
