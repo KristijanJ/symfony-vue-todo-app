@@ -9,7 +9,7 @@
 import './styles/app.css';
 
 import { createApp } from 'vue';
-import App from '../templates/Home/App';
+import App from '../templates/Pages/Home/App';
 
 const app = createApp({
     components: { App },

@@ -23,6 +23,7 @@
         "postcss": "^8.2.8",
         "tailwindcss": "^2.0.3",
         "vue": "^3.0.2",
+        "vue-draggable-next": "^2.0.1",
         "vue-loader": "^16.0.0-rc.2",
         "vue-template-compiler": "^2.6.12"
     }

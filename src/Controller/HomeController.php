@@ -2,22 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Todo;
 use App\Service\TodoService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class HomeController extends AbstractController
 {
     public function index()
     {
-        $name = 'Kiko';
-        return $this->render('Home/index.html.twig', [
-            'name' => $name
-        ]);
+        return $this->render('Pages/Home/index.html.twig');
     }
 
     public function getAllTodos(TodoService $todoService): JsonResponse
