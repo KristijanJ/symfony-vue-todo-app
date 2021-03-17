@@ -44,6 +44,7 @@ class TodoService
     {
         $todo = new Todo();
         $todo->setTitle($body->title);
+        $todo->setTodoOrder($body->todoOrder);
         $todo->setStatus(1);
         $this->entityManager->persist($todo);
         $this->entityManager->flush();
@@ -79,10 +80,34 @@ class TodoService
             $todo->setTitle($body->title);
         }
 
+        if (isset($body->todoOrder)) {
+            $body->todoOrder = intval($body->todoOrder);
+            $todo->setTodoOrder($body->todoOrder);
+        }
+
         $this->entityManager->flush();
 
         $data = $this->serializer->serialize($todo, JsonEncoder::FORMAT);
 
+        return new JsonResponse($data, Response::HTTP_OK, [], true);
+    }
+
+    public function updateTodosOrder($body)
+    {
+        $todos = $this->entityManager->getRepository(Todo::class)->findAll();
+        foreach ($todos as $todo) {
+            foreach ($body as $bodyEl) {
+                if ($todo->getId() == $bodyEl->id) {
+                    $todo->setTodoOrder(intval($bodyEl->todoOrder));
+                }  
+            }
+        }
+
+        $this->entityManager->flush();
+        $this->entityManager->clear();
+
+        $data = $this->serializer->serialize($todos, JsonEncoder::FORMAT);
+        
         return new JsonResponse($data, Response::HTTP_OK, [], true);
     }
 }

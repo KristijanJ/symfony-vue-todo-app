@@ -27,6 +27,11 @@ class Todo
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $todoOrder;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Todo
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getTodoOrder(): ?int
+    {
+        return $this->todoOrder;
+    }
+
+    public function setTodoOrder(?string $todoOrder): self
+    {
+        $this->todoOrder = $todoOrder;
 
         return $this;
     }

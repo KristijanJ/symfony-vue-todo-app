@@ -24,3 +24,8 @@ update_todo:
    path: /api/update-todo/{id}
    controller: App\Controller\HomeController::updateTodo
    methods: [PATCH]
+
+update_todos_order:
+   path: /api/update-todos-order
+   controller: App\Controller\HomeController::updateTodosOrder
+   methods: [PATCH]

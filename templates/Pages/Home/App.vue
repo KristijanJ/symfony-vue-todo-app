@@ -89,7 +89,11 @@ export default {
             fetch('http://127.0.0.1:8000/api/get_all_todos')
                 .then(response => response.json())
                 .then(data => {
-                    this.todos = data;
+                    var todos = data;
+                    todos.sort((a, b) => {
+                        return a.todoOrder > b.todoOrder ? 1 : -1;
+                    })
+                    this.todos = todos;
                     this.loading = false;
                 });
         },
@@ -97,7 +101,8 @@ export default {
             this.showCreateModal = true;
             this.selectedTodo = {
                 title: '',
-                status: 1
+                status: 1,
+                todoOrder: this.todos.length
             }
         },
         selectTodo(todo, action) {
@@ -156,8 +161,21 @@ export default {
                 });
         },
         updateTodoOrder(newTodos) {
-            console.log(newTodos);
+            newTodos.forEach((todo, index) => {
+                todo.todoOrder = index;
+            });
             this.todos = newTodos;
+            fetch('http://127.0.0.1:8000/api/update-todos-order', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newTodos)
+            })
+                .then(response => response.json())
+                .then(() => {
+                    this.getTodos();
+                });
         }
     }
 };

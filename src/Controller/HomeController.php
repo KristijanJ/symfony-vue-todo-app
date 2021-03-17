@@ -56,4 +56,13 @@ class HomeController extends AbstractController
 
         return $todo;
     }
+
+    public function updateTodosOrder(Request $request, TodoService $todoService): JsonResponse
+    {
+        $body = json_decode($request->getContent());
+
+        $todo = $todoService->updateTodosOrder($body);
+
+        return $todo;
+    }
 }
